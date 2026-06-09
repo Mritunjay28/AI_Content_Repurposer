@@ -1,7 +1,6 @@
 package com.project.AI_Content_Repurposer.controller;
 
 
-import com.project.AI_Content_Repurposer.dto.AuthRequest;
 import com.project.AI_Content_Repurposer.dto.LoginRequest;
 import com.project.AI_Content_Repurposer.dto.RegisterRequest;
 import com.project.AI_Content_Repurposer.entity.User;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/auth")
