@@ -16,6 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
@@ -45,7 +50,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .csrf(AbstractHttpConfigurer::disable)// Disable CSRF (not needed for stateless JWT)
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> {})
                 .exceptionHandling(e ->
                         e.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(s-> // Stateless session (required for JWT)
@@ -64,6 +69,43 @@ public class WebSecurityConfig {
         );
         // Add JWT filter before Spring Security's default filter
         return http.build();
+    }
+
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration =
+                new CorsConfiguration();
+
+        configuration.setAllowedOrigins(
+                List.of(
+                        "http://127.0.0.1:3000",
+                        "http://localhost:3000",
+                        "http://127.0.0.1:5500",
+                        "http://localhost:5500"
+                )
+        );
+
+        configuration.setAllowedMethods(
+                List.of("*")
+        );
+
+        configuration.setAllowedHeaders(
+                List.of("*")
+        );
+
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
+        source.registerCorsConfiguration(
+                "/**",
+                configuration
+        );
+
+        return source;
     }
 }
 

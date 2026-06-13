@@ -1,5 +1,7 @@
 package com.project.AI_Content_Repurposer.service;
 
+import com.project.AI_Content_Repurposer.dto.ContentDetailsResponse;
+import com.project.AI_Content_Repurposer.dto.ContentHistoryResponse;
 import com.project.AI_Content_Repurposer.dto.GeneratedContentResponse;
 import com.project.AI_Content_Repurposer.entity.ContentHistory;
 import com.project.AI_Content_Repurposer.entity.User;
@@ -9,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -66,5 +70,67 @@ public class ContentGenerationService {
         contentHistoryRepository.save(history);
 
         return generatedContent;
+    }
+
+    public List<ContentHistoryResponse> getHistory() {
+
+        String username =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName();
+
+        List<ContentHistory> histories =
+                contentHistoryRepository
+                        .findByUserUsername(username);
+
+        return histories.stream()
+                .map(history ->
+                        new ContentHistoryResponse(
+                                history.getId(),
+                                history.getYoutubeUrl(),
+                                history.getCreatedAt()
+                        )
+                )
+                .toList();
+    }
+
+    public ContentDetailsResponse getHistoryById(
+            Long id) {
+
+        String username =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName();
+
+        ContentHistory history =
+                contentHistoryRepository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "Content not found"
+                                )
+                        );
+
+        // check if asked history belongs to the same user who asked for history
+        if (!history.getUser()
+                .getUsername()
+                .equals(username)) {
+
+            throw new RuntimeException(
+                    "Access denied"
+            );
+        }
+
+        return new ContentDetailsResponse(
+                history.getId(),
+                history.getYoutubeUrl(),
+                history.getTranscript(),
+                history.getTwitterThread(),
+                history.getLinkedinPost(),
+                history.getBlogSummary(),
+                history.getCreatedAt()
+        );
     }
 }

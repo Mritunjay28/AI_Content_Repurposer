@@ -1,13 +1,13 @@
 package com.project.AI_Content_Repurposer.controller;
 
-import com.project.AI_Content_Repurposer.dto.GenerateContentRequest;
-import com.project.AI_Content_Repurposer.dto.GeneratedContentResponse;
-import com.project.AI_Content_Repurposer.dto.TranscriptResponse;
+import com.project.AI_Content_Repurposer.dto.*;
 import com.project.AI_Content_Repurposer.service.ContentGenerationService;
 import com.project.AI_Content_Repurposer.service.TranscriptService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/content")
@@ -39,16 +39,34 @@ public class ContentController {
     }
 
     @PostMapping("/generate")
-    public ResponseEntity<GeneratedContentResponse> generateContent(
-            @RequestBody
-            GenerateContentRequest request){
-
+    public ResponseEntity<GeneratedContentResponse> generateContent( @RequestBody GenerateContentRequest request){
 
         return ResponseEntity.ok(
                 contentGenerationService
                         .generateContent(
                                 request.getYoutubeUrl()
                         )
+        );
+    }
+
+
+    @GetMapping("/history")
+    public ResponseEntity<List<ContentHistoryResponse>> getHistory() {
+
+        return ResponseEntity.ok(
+                contentGenerationService
+                        .getHistory()
+        );
+    }
+
+    @GetMapping("/history/{id}")
+    public ResponseEntity<ContentDetailsResponse>
+    getHistoryById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                contentGenerationService
+                        .getHistoryById(id)
         );
     }
 }

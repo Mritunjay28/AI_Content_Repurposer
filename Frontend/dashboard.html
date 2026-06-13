@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Repurpose AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="dashboard-wrap">
+
+ 
+  <header class="topbar">
+    <div class="topbar-logo">
+      <div class="topbar-logo-icon">✦</div>
+      Repurpose<span>AI</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-ghost" onclick="logout()">Sign out</button>
+    </div>
+  </header>
+
+ 
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>History</h3>
+    </div>
+    <div class="sidebar-list" id="historyContainer">
+      <div class="sidebar-empty">
+        <span class="sidebar-empty-icon">▶</span>
+        No history yet.<br>Generate your first post.
+      </div>
+    </div>
+  </aside>
+
+ 
+  <main class="main">
+    <div class="main-inner">
+
+      <div class="main-header">
+        <h2>Repurpose a YouTube video</h2>
+        <p>Paste a URL — get a Twitter thread, LinkedIn post, and blog summary in seconds.</p>
+      </div>
+
+     
+      <div class="input-row">
+        <div class="url-input-wrap">
+          <span class="url-input-icon">▶</span>
+          <input
+            type="text"
+            id="youtubeUrl"
+            placeholder="https://www.youtube.com/watch?v=…"
+            autocomplete="off"
+            onkeydown="if(event.key==='Enter') generateContent()"
+          />
+        </div>
+        <button class="btn-generate" id="generateBtn" onclick="generateContent()">
+          <span class="spinner"></span>
+          <span class="btn-label">Generate</span>
+        </button>
+      </div>
+
+      
+      <div class="output-grid">
+
+        <div class="output-card card-twitter">
+          <div class="output-card-header">
+            <span class="output-platform-badge badge-twitter">𝕏 &nbsp;Twitter thread</span>
+            <button class="copy-btn" onclick="copyContent('twitterThread')">Copy</button>
+          </div>
+          <div class="output-card-body">
+            <p id="twitterThread"><span class="placeholder-text">Your Twitter thread will appear here…</span></p>
+          </div>
+        </div>
+
+        <div class="output-card card-linkedin">
+          <div class="output-card-header">
+            <span class="output-platform-badge badge-linkedin">in &nbsp;LinkedIn post</span>
+            <button class="copy-btn" onclick="copyContent('linkedinPost')">Copy</button>
+          </div>
+          <div class="output-card-body">
+            <p id="linkedinPost"><span class="placeholder-text">Your LinkedIn post will appear here…</span></p>
+          </div>
+        </div>
+
+        <div class="output-card card-blog full-width">
+          <div class="output-card-header">
+            <span class="output-platform-badge badge-blog">✍ &nbsp;Blog summary</span>
+            <button class="copy-btn" onclick="copyContent('blogSummary')">Copy</button>
+          </div>
+          <div class="output-card-body">
+            <p id="blogSummary"><span class="placeholder-text">Your blog summary will appear here…</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

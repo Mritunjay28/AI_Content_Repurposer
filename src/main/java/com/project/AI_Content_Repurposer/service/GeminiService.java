@@ -69,8 +69,6 @@ public class GeminiService {
                 .replace("```", "")
                 .trim();
 
-        System.out.println(geminiText);
-
         ObjectMapper objectMapper =
                 new ObjectMapper();
 
