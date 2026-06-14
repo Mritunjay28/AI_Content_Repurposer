@@ -7,50 +7,29 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
 <div class="auth-wrap">
   <div class="auth-card">
-
     <div class="auth-logo">
-      <div class="auth-logo-icon">✦</div>
+      <div class="auth-logo-icon">R</div>
       <span class="auth-logo-name">Repurpose<span>AI</span></span>
     </div>
-
     <h2>Welcome back</h2>
     <p class="subtitle">Sign in to start repurposing content.</p>
-
     <div class="field">
       <label for="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        placeholder="your_handle"
-        autocomplete="username"
-      />
+      <input type="text" id="username" placeholder="your_handle" autocomplete="username" />
     </div>
-
     <div class="field">
       <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="••••••••"
-        autocomplete="current-password"
-        onkeydown="if(event.key==='Enter') login()"
-      />
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') login()" />
     </div>
-
     <button class="btn btn-primary" id="loginBtn" onclick="login()" style="margin-top:8px;">
       Sign in
     </button>
-
-    <p class="auth-footer">
-      No account? <a href="register.html">Create one</a>
-    </p>
-
+    <p class="auth-footer">No account? <a href="register.html">Create one</a></p>
   </div>
 </div>
-
 <script src="js/auth.js"></script>
 </body>
 </html>

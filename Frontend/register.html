@@ -7,60 +7,33 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
 <div class="auth-wrap">
   <div class="auth-card">
-
     <div class="auth-logo">
-      <div class="auth-logo-icon">✦</div>
+      <div class="auth-logo-icon">R</div>
       <span class="auth-logo-name">Repurpose<span>AI</span></span>
     </div>
-
     <h2>Create account</h2>
     <p class="subtitle">Turn any YouTube video into social content.</p>
-
     <div class="field">
       <label for="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        placeholder="your_handle"
-        autocomplete="username"
-      />
+      <input type="text" id="username" placeholder="your_handle" autocomplete="username" />
     </div>
-
     <div class="field">
       <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="you@example.com"
-        autocomplete="email"
-      />
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
     </div>
-
     <div class="field">
       <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="At least 5 characters"
-        autocomplete="new-password"
-        onkeydown="if(event.key==='Enter') registerUser()"
-      />
+      <input type="password" id="password" placeholder="At least 5 characters" autocomplete="new-password"
+        onkeydown="if(event.key==='Enter') registerUser()" />
     </div>
-
     <button class="btn btn-primary" id="registerBtn" onclick="registerUser()" style="margin-top:8px;">
       Create account
     </button>
-
-    <p class="auth-footer">
-      Already have an account? <a href="login.html">Sign in</a>
-    </p>
-
+    <p class="auth-footer">Already have an account? <a href="login.html">Sign in</a></p>
   </div>
 </div>
-
 <script src="js/auth.js"></script>
 </body>
 </html>
