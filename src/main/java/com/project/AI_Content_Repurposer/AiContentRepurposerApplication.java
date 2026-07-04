@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AiContentRepurposerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AiContentRepurposerApplication.class, args);
+
+        SpringApplication.run(AiContentRepurposerApplication.class, args);
+        System.out.println("========== APPLICATION STARTED ==========");
 	}
 
 }
