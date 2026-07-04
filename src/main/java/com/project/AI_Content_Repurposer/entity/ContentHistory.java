@@ -22,20 +22,16 @@ public class ContentHistory {
 
     private String youtubeUrl;
 
-    @Lob
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String transcript;
 
-    @Lob
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String twitterThread;
 
-    @Lob
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String linkedinPost;
 
-    @Lob
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String blogSummary;
 
     private LocalDateTime createdAt;
