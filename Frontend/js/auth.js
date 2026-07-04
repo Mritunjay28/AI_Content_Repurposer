@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/v1";
+const BASE_URL = "https://ai-content-repurposer.onrender.com/api/v1";
 
 function showToast(message, type = "success") {
   const existing = document.querySelector(".toast");
