@@ -1,51 +1,54 @@
-# AI Content Repurposer
+# 🚀 AI Content Repurposer
 
-AI-powered platform that converts a YouTube video into multiple content formats including:
+An AI-powered full-stack web application that transforms a YouTube video into multiple content formats using Google's Gemini AI.
 
-- Twitter/X Thread
-- LinkedIn Post
-- Blog Summary
+Simply paste a YouTube video URL, and the application automatically extracts the transcript, generates high-quality content, and saves it for future access.
 
-The application extracts the transcript from a YouTube video, processes it using Google's Gemini AI model, and stores generated content for future access.
+## 🌐 Live Demo
+
+**🔗 https://mrituai.netlify.app/**
 
 ---
 
-## Features
+## ✨ Features
 
-### Authentication & Security
-- User Registration
-- User Login
+### 🔐 Authentication & Security
+
+- User Registration & Login
 - JWT Authentication
-- Password Encryption using BCrypt
-- Protected APIs with Spring Security
+- BCrypt Password Encryption
+- Spring Security Protected APIs
 
-### Content Generation
-- Extract transcript from YouTube videos
+### 🤖 AI Content Generation
+
+- Extract YouTube video transcripts
 - Generate Twitter/X Threads
 - Generate LinkedIn Posts
 - Generate Blog Summaries
 - AI-powered content generation using Gemini API
 
-### Content History
-- Save generated content in MySQL
-- View previously generated content
-- View detailed content history
+### 📚 Content History
+
+- Store generated content in MySQL
+- View previous generations
+- Detailed content history
 - User-specific content access
 
-### Frontend
-- User Registration Page
-- User Login Page
+### 💻 Frontend
+
+- Responsive UI
+- Login & Registration Pages
 - Dashboard
 - History Panel
-- Loading Spinner
-- Responsive UI
+- Loading Indicators
 - Logout Functionality
 
 ---
 
-## Tech Stack
+# 🛠 Tech Stack
 
-### Backend
+## Backend
+
 - Java 21
 - Spring Boot
 - Spring Security
@@ -55,43 +58,44 @@ The application extracts the transcript from a YouTube video, processes it using
 - MySQL
 - WebClient
 
-### Frontend
+## Frontend
+
 - HTML
 - CSS
 - JavaScript
 
-### APIs
-- Gemini API
+## AI & APIs
+
+- Google Gemini API
 - YouTube Transcript API (RapidAPI)
 
 ---
 
-## Architecture
+# 🏗 Architecture
 
 ```text
-Frontend
-    |
-    v
-Spring Boot REST APIs
-    |
-    +---- JWT Authentication
-    |
-    +---- YouTube Transcript API
-    |
-    +---- Gemini API
-    |
-    v
-MySQL Database
+                 Frontend
+                     │
+                     ▼
+        Spring Boot REST APIs
+                     │
+      ┌──────────────┼──────────────┐
+      │              │              │
+      ▼              ▼              ▼
+ JWT Authentication Gemini API YouTube Transcript API
+                     │
+                     ▼
+              MySQL Database
 ```
 
 ---
 
-## Database Design
+# 🗄 Database Design
 
-### Users
+## Users
 
 | Column | Type |
-|----------|----------|
+|---------|------|
 | id | Long |
 | username | String |
 | email | String |
@@ -101,10 +105,10 @@ MySQL Database
 
 ---
 
-### Content History
+## Content History
 
 | Column | Type |
-|----------|----------|
+|---------|------|
 | id | Long |
 | youtubeUrl | String |
 | transcript | LONGTEXT |
@@ -112,48 +116,48 @@ MySQL Database
 | linkedinPost | LONGTEXT |
 | blogSummary | LONGTEXT |
 | createdAt | LocalDateTime |
-| user_id | FK |
+| user_id | Foreign Key |
 
 ---
 
-## API Endpoints
+# 📡 REST API Endpoints
 
-### Authentication
+## Authentication
 
-#### Register
+### Register
 
 ```http
 POST /api/v1/auth/signup
 ```
 
-Request:
+Request
 
 ```json
 {
-  "username":"john",
-  "email":"john@example.com",
-  "password":"password123"
+  "username": "john",
+  "email": "john@example.com",
+  "password": "password123"
 }
 ```
 
 ---
 
-#### Login
+### Login
 
 ```http
 POST /api/v1/auth/signin
 ```
 
-Request:
+Request
 
 ```json
 {
-  "username":"john",
-  "password":"password123"
+  "username": "john",
+  "password": "password123"
 }
 ```
 
-Response:
+Response
 
 ```text
 JWT_TOKEN
@@ -161,46 +165,46 @@ JWT_TOKEN
 
 ---
 
-### Generate Content
+## Generate Content
 
 ```http
 POST /api/v1/content/generate
 ```
 
-Headers:
+Header
 
 ```text
 Authorization: Bearer <JWT_TOKEN>
 ```
 
-Request:
+Request
 
 ```json
 {
-  "youtubeUrl":"https://www.youtube.com/watch?v=VIDEO_ID"
+  "youtubeUrl": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
 
-Response:
+Response
 
 ```json
 {
-  "transcript":"...",
-  "twitterThread":"...",
-  "linkedinPost":"...",
-  "blogSummary":"..."
+  "transcript": "...",
+  "twitterThread": "...",
+  "linkedinPost": "...",
+  "blogSummary": "..."
 }
 ```
 
 ---
 
-### Get Content History
+## Get Content History
 
 ```http
 GET /api/v1/content/history
 ```
 
-Headers:
+Header
 
 ```text
 Authorization: Bearer <JWT_TOKEN>
@@ -208,13 +212,13 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
-### Get Content Details
+## Get Content Details
 
 ```http
 GET /api/v1/content/history/{id}
 ```
 
-Headers:
+Header
 
 ```text
 Authorization: Bearer <JWT_TOKEN>
@@ -222,21 +226,18 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
-## Setup Instructions
+# ⚙️ Getting Started
 
-### 1. Clone Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/AI_Content_Repurposer.git
-```
-
-```bash
 cd AI_Content_Repurposer
 ```
 
 ---
 
-### 2. Create Database
+## 2. Create Database
 
 ```sql
 CREATE DATABASE ai_content_repurposer;
@@ -244,95 +245,71 @@ CREATE DATABASE ai_content_repurposer;
 
 ---
 
-### 3. Create application.properties
-
-Create:
-
-```text
-src/main/resources/application.properties
-```
-
-Add:
-
-```properties
-spring.application.name=AI_Content_Repurposer
-
-spring.datasource.url=jdbc:mysql://localhost:3306/ai_content_repurposer
-spring.datasource.username=YOUR_DB_USERNAME
-spring.datasource.password=YOUR_DB_PASSWORD
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-
-jwt.secret=YOUR_SECRET_KEY
-jwt.expiration=86400000
-
-gemini.api.key=YOUR_GEMINI_API_KEY
-
-transcript.api.key=YOUR_RAPIDAPI_KEY
-transcript.api.host=youtube-transcripts.p.rapidapi.com
-```
-
----
-
-### 4. Run Application
+## 3. Run the Application
 
 ```bash
 mvn spring-boot:run
 ```
 
-Application runs at:
+The backend will start at
 
-```text
+```
 http://localhost:8080
 ```
 
 ---
 
-## Project Screenshots
+# 📸 Project Screenshots
 
-### Login Page
-
-<img width="1843" height="881" alt="Screenshot 2026-06-13 152341" src="https://github.com/user-attachments/assets/9fdd43db-bdbd-4763-9982-b9aecd1706d8" />
-
----
-
-### Register Page
-
-<img width="1860" height="914" alt="Screenshot 2026-06-13 152325" src="https://github.com/user-attachments/assets/79bbcac0-b32f-4de5-afd0-3c9c2c8722cb" />
-
----
-
-### Dashboard
-
-<img width="1831" height="874" alt="Screenshot 2026-06-13 152356" src="https://github.com/user-attachments/assets/3a6f2613-9522-438d-83bf-500c3217139e" />
+## Login Page
 
 
 
 ---
 
-### History Panel
-
-<img width="1871" height="907" alt="Screenshot 2026-06-13 152458" src="https://github.com/user-attachments/assets/56ba3108-0f69-4041-98f8-ce65b23a4776" />
+## Register Page
 
 
 ---
 
-## Future Improvements
+## Dashboard
+
+
+---
+
+## History Panel
+
+
+---
+
+# 🚀 Future Improvements
 
 - Export generated content as PDF
-- Content Templates
-- User Profile Management
+- Multiple writing styles & templates
+- AI tone customization
+- User profile management
 - OAuth Login (Google/GitHub)
-- Docker Support
-- Cloud Deployment
-- AI Tone Customization
-- Content Scheduling
+- Docker support
+- Cloud deployment
+- Content scheduling
+- Multi-language support
 
 ---
 
-## Author
+# 👨‍💻 Author
 
-- Developed as a full-stack AI project using Spring Boot, JWT Authentication, MySQL, and Gemini AI.
-- Made By Mritunjay28 
-- Used AI To Polish Frontend .
+Developed by **Mritunjay28**
+
+### Built With
+
+- Spring Boot
+- Spring Security
+- JWT Authentication
+- MySQL
+- Google Gemini AI
+- HTML, CSS & JavaScript
+
+---
+
+⭐ If you found this project useful, consider giving it a star!
+USED AI to Polish Frontend
