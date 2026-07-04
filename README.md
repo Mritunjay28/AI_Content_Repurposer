@@ -263,24 +263,23 @@ http://localhost:8080
 
 ## Login Page
 
+<img width="1831" height="877" alt="Screenshot 2026-07-04 182630" src="https://github.com/user-attachments/assets/25757b64-9b52-49be-887d-19266019b92c" />
 
 
 ---
 
 ## Register Page
 
+<img width="1836" height="880" alt="Screenshot 2026-07-04 182638" src="https://github.com/user-attachments/assets/747e3d24-3b07-41c8-92e2-4228a68d8784" />
 
 ---
 
 ## Dashboard
+<img width="1543" height="802" alt="Screenshot 2026-07-04 182621" src="https://github.com/user-attachments/assets/c7573b07-9137-476a-a585-9f6d84a7cd37" />
 
 
 ---
 
-## History Panel
-
-
----
 
 # 🚀 Future Improvements
 
