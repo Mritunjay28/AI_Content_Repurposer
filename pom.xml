@@ -73,6 +73,11 @@
 			<scope>test</scope>
 		</dependency>
 
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
 
         <!--This provides the core API for generating, parsing, and validating JWTs.
 It contains all the interfaces and classes necessary for creating and managing JWTs. -->
