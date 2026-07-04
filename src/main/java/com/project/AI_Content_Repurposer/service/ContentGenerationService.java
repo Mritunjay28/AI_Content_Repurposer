@@ -137,4 +137,34 @@ public class ContentGenerationService {
                 history.getCreatedAt()
         );
     }
+
+    @Transactional
+    public void deleteHistory(Long id) {
+        String username =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName();
+
+        ContentHistory history =
+                contentHistoryRepository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "Content not found"
+                                )
+                        );
+
+        // check if history belongs to the same user
+        if (!history.getUser()
+                .getUsername()
+                .equals(username)) {
+
+            throw new RuntimeException(
+                    "Access denied"
+            );
+        }
+
+        contentHistoryRepository.delete(history);
+    }
 }

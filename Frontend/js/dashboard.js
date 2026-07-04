@@ -138,7 +138,6 @@ async function loadHistory() {
       item.className = "history-item";
       item.setAttribute("data-id", history.id);
 
-      
       let label = history.youtubeUrl || "Unknown URL";
       try {
         const u = new URL(history.youtubeUrl);
@@ -149,12 +148,21 @@ async function loadHistory() {
       item.innerHTML = `
         <div class="history-item-icon">▶</div>
         <span class="history-item-url" title="${history.youtubeUrl}">${label}</span>
+        <button class="history-item-delete" title="Delete history item">🗑</button>
       `;
 
       item.addEventListener("click", () => {
         document.querySelectorAll(".history-item").forEach((el) => el.classList.remove("active"));
         item.classList.add("active");
         loadHistoryItem(history.id);
+      });
+
+      const deleteBtn = item.querySelector(".history-item-delete");
+      deleteBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        if (confirm("Are you sure you want to delete this history item?")) {
+          await deleteHistoryItem(history.id, item);
+        }
       });
 
       container.appendChild(item);
@@ -177,6 +185,51 @@ async function loadHistoryItem(id) {
 
     const data = await response.json();
     setOutput(data.twitterThread, data.linkedinPost, data.blogSummary);
+  } catch {
+    showToast("Could not reach server.", "error");
+  }
+}
+
+function clearOutput() {
+  setOutput("", "", "");
+  const placeholders = {
+    twitterThread: "Your Twitter thread will appear here…",
+    linkedinPost: "Your LinkedIn post will appear here…",
+    blogSummary: "Your blog summary will appear here…"
+  };
+  for (const [id, val] of Object.entries(placeholders)) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.innerHTML = `<span class="placeholder-text">${val}</span>`;
+    }
+  }
+}
+
+async function deleteHistoryItem(id, itemElement) {
+  try {
+    const response = await fetch(`${BASE_URL}/content/history/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": "Bearer " + token },
+    });
+
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location = "login.html";
+      return;
+    }
+
+    if (!response.ok) {
+      showToast("Could not delete history item.", "error");
+      return;
+    }
+
+    showToast("History item deleted.", "success");
+
+    if (itemElement.classList.contains("active")) {
+      clearOutput();
+    }
+
+    loadHistory();
   } catch {
     showToast("Could not reach server.", "error");
   }

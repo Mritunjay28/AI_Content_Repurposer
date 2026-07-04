@@ -69,4 +69,10 @@ public class ContentController {
                         .getHistoryById(id)
         );
     }
+
+    @DeleteMapping("/history/{id}")
+    public ResponseEntity<Void> deleteHistoryById(@PathVariable Long id) {
+        contentGenerationService.deleteHistory(id);
+        return ResponseEntity.noContent().build();
+    }
 }
