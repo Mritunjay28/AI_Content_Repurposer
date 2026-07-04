@@ -186,3 +186,10 @@ function logout() {
   localStorage.removeItem("token");
   window.location = "login.html";
 }
+
+/* ── Cursor Follow Spotlight Shade for Dashboard Background ── */
+document.addEventListener("mousemove", (e) => {
+  const bg = document.body;
+  bg.style.setProperty("--mouse-x", `${e.clientX}px`);
+  bg.style.setProperty("--mouse-y", `${e.clientY}px`);
+});

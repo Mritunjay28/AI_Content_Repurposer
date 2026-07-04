@@ -99,3 +99,40 @@ async function login() {
     btn.innerHTML = "Sign in";
   }
 }
+
+/* ── Interactive Background Dot Grid for Auth Pages ── */
+function createDotGrid() {
+  let container = document.querySelector('.dots-container');
+  if (container) container.remove();
+
+  container = document.createElement('div');
+  container.className = 'dots-container';
+  document.body.prepend(container);
+
+  const cellSize = 32;
+  const cols = Math.ceil(window.innerWidth / cellSize);
+  const rows = Math.ceil(window.innerHeight / cellSize);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const dot = document.createElement('div');
+      dot.className = 'interactive-dot';
+      dot.style.left = `${c * cellSize + cellSize / 2}px`;
+      dot.style.top = `${r * cellSize + cellSize / 2}px`;
+      container.appendChild(dot);
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', createDotGrid);
+window.addEventListener('resize', () => {
+  clearTimeout(window.resizeDotsTimer);
+  window.resizeDotsTimer = setTimeout(createDotGrid, 200);
+});
+
+/* ── Cursor Follow Spotlight Shade for Auth Pages ── */
+document.addEventListener("mousemove", (e) => {
+  const bg = document.body;
+  bg.style.setProperty("--mouse-x", `${e.clientX}px`);
+  bg.style.setProperty("--mouse-y", `${e.clientY}px`);
+});
