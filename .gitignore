@@ -44,3 +44,8 @@ build/
 ### OS Files ###
 .DS_Store
 Thumbs.db
+
+### Custom Prep Guide & Assets ###
+project_architecture_and_analysis.md
+img.png
+img_1.png
