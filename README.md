@@ -8,6 +8,10 @@ Simply paste a YouTube video URL, and the application automatically extracts the
 
 **🔗 https://mrituai.netlify.app/**
 
+**Promo video (30s):**
+
+https://github.com/user-attachments/assets/786d1d05-bbfe-463f-90a0-dd3c943a80ad
+
 ---
 
 ## ✨ Features
@@ -261,21 +265,27 @@ http://localhost:8080
 
 # 📸 Project Screenshots
 
-## Login Page
+## Register Page
 
-<img width="1831" height="877" alt="Screenshot 2026-07-04 182630" src="https://github.com/user-attachments/assets/25757b64-9b52-49be-887d-19266019b92c" />
-
+<img width="1920" height="993" alt="register" src="https://github.com/user-attachments/assets/e5cb6850-3e2f-40b6-96b2-802727809f33" />
 
 ---
 
-## Register Page
+## Login Page
 
-<img width="1836" height="880" alt="Screenshot 2026-07-04 182638" src="https://github.com/user-attachments/assets/747e3d24-3b07-41c8-92e2-4228a68d8784" />
+<img width="1920" height="993" alt="login" src="https://github.com/user-attachments/assets/d112ea91-b9ab-4514-9895-9cb8e2bb5818" />
 
 ---
 
 ## Dashboard
-<img width="1543" height="802" alt="Screenshot 2026-07-04 182621" src="https://github.com/user-attachments/assets/c7573b07-9137-476a-a585-9f6d84a7cd37" />
+
+<img width="1920" height="993" alt="dashboard" src="https://github.com/user-attachments/assets/edcce527-8a8f-4125-99a6-99a3d625c9cb" />
+
+---
+
+## Generated Output
+
+<img width="1920" height="993" alt="output" src="https://github.com/user-attachments/assets/092b2916-0d91-49e6-98ca-551874f8233e" />
 
 
 ---
